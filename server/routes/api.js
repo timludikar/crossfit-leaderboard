@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
             query.where('userid').in(nameList);
         }
     }
-    
+
     if (req.query.affiliateid) {
         let affiliateid = JSON.parse(req.query.affiliateid);
-        query.where('affiliateid').in(affiliateid);
+        query.where('affiliateid').in(affiliateid)
     }
 
     let division = parseInt(req.query.division, 10);
@@ -81,9 +81,9 @@ router.get('/', (req, res) => {
             query.sort({'overallrank': 1});
         }
     } else {
-        query.sort({'overallrank': 1});        
+        query.sort({'overallrank': 1});
     }
-    
+
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
         query.limit(parseInt(limit, 10));

@@ -74,6 +74,8 @@
         <option value="region">Region Rank</option>
         <option value="workout1">17.1</option>
         <option value="workout2">17.2</option>
+        <option value="workout3">17.3</option>
+        <option value="workout4">17.4</option>
       </select>
     </div>
   </div>
@@ -83,8 +85,14 @@
       <input name="name" [(ngModel)]="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
     </div>
     <div class="option col-sm-6">
-      <label for="affiliate">Affiliate</label>
-      <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
+      <div class="option col-sm-6">
+        <label>Crossfit Aurora Central</label>
+        <input type="checkbox" checked name="affiliate" value="14116" class="name-input form-control" (change)="searchAffiliate($event.target.value)">
+      </div>
+      <div class="option col-sm-6">
+        <label>Crossfit Newmarket Central</label>
+        <input type="checkbox" checked name="affiliate" value="1535" class="name-input form-control" (change)="searchAffiliate($event.target.value)">
+      </div>
     </div>
   </div>
   <div class="row">
@@ -137,7 +145,7 @@
       <th class="text">17.1</th>
       <th class="text">17.2</th>
       <th class="text">17.3</th>
-      <th class="text">17.4</th>      
+      <th class="text">17.4</th>
     </tr>
   </thead>
   <tbody *ngFor="let athlete of data; let i = index;" >

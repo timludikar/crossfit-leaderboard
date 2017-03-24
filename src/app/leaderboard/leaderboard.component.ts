@@ -19,7 +19,7 @@ export class LeaderboardComponent implements OnInit {
   public name;
   public nameInput: Subject<any>;
   public affiliateInput: Subject<any>;
-  public affiliate;
+  public affiliate = ["14116", "1535"];
   public division;
   public occupation;
   public region;
@@ -50,7 +50,7 @@ export class LeaderboardComponent implements OnInit {
       this.reloadData();
     });
 
-    this.athletes.getAthletes(10, 0, this.name, null).subscribe( (list) => {
+    this.athletes.getAthletes(10, 0, this.name, this.affiliate).subscribe( (list) => {
       this.data = list;
       this.loading = false;
     });
@@ -106,10 +106,16 @@ export class LeaderboardComponent implements OnInit {
   }
 
   searchAffiliate(afidList) {
+    let index = this.affiliate.indexOf(afidList);
+    if(index > -1){
+      this.affiliate.splice(index, 1);
+    } else {
+      this.affiliate.push(afidList);
+    }
+    if(this.affiliate.length == 0) this.affiliate = null;
     this.moreData = {};
     this.loading = true;
     this.page = 1;
-    this.affiliate = afidList.split(',');
     this.affiliateInput.next(afidList);
   }
 
